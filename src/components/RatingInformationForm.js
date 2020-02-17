@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 
 import { FormControl, Button } from "@material-ui/core";
 import AddressForm from "./AddressForm";
@@ -6,29 +6,17 @@ import FormField from "./FormField";
 
 function RatingInformationForm() {
   //TODO: validation on inputs + Styling.
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  function addressReducer(state, { field, value }) {
+  function reducer(state, { field, value }) {
     return { ...state, [field]: value };
   }
-  const [addressState, dispatch] = useReducer(addressReducer, {});
-  const onAddressChange = e => {
+  const [state, dispatch] = useReducer(reducer, {});
+  const onChange = e => {
     dispatch({ field: e.target.id, value: e.target.value });
   };
 
-  const onChange = e => {
-    e.persist();
-    e.target.id === "first_name"
-      ? setFirstName(e.target.value)
-      : setLastName(e.target.value);
-  };
   const handleSubmit = e => {
-    const request = {
-      first_name,
-      last_name,
-      address: addressState
-    };
-
+    let { first_name, last_name, ...address } = state;
+    const request = { address, first_name, last_name };
     fetch("https://fed-challenge-api.sure.now.sh/api/v1/quotes", {
       method: "POST",
       headers: {
@@ -54,7 +42,7 @@ function RatingInformationForm() {
       <FormControl>
         <FormField label="Last Name" id="last_name" onChange={onChange} />
       </FormControl>
-      <AddressForm onChange={onAddressChange} addressState={addressState} />
+      <AddressForm onChange={onChange} addressState={state} />
       <Button type="submit" color="primary" onClick={handleSubmit}>
         Submit
       </Button>
