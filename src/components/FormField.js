@@ -5,12 +5,11 @@ import {
   Input,
 } from "@material-ui/core";
 
-function FormField(props) {
-  const id = props.label.replace(/\s+/g, "-").toLowerCase();
+function FormField({label, id, onChange}) {
   return (
     <div className="FormField">
-      <InputLabel htmlFor="first-name-input">{props.label}</InputLabel>
-      <Input id={id} />
+      <InputLabel htmlFor={id}>{label}</InputLabel>
+      <Input id={id} onChange={onChange}/>
     </div>
   );
 }
