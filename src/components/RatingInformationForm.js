@@ -47,7 +47,7 @@ function RatingInformationForm() {
   };
 
   return (
-    <div className="Form">
+    <div className="RatingInformationForm">
       <FormControl>
         <FormField label="First Name" id="first_name" onChange={onChange} />
       </FormControl>

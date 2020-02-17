@@ -1,40 +1,26 @@
 import React from "react";
 
-import { FormControl, InputLabel, Input } from "@material-ui/core";
+import { FormControl } from "@material-ui/core";
+import FormField from "./FormField";
 
 function AddressForm({ onChange, addressState }) {
   return (
-    <div className="Form">
+    <div className="AddressForm">
       <FormControl>
-        <div className="FormField">
-          <InputLabel htmlFor="line_1">Address</InputLabel>
-          <Input id="line_1" type="text" onChange={onChange} />
-        </div>
+        <FormField label="Address" id="line_1" onChange={onChange} />
       </FormControl>
 
       <FormControl>
-        <div className="FormField">
-          <InputLabel htmlFor="line_2">Line 2</InputLabel>
-          <Input id="line_2" type="text" onChange={onChange} />
-        </div>
+        <FormField label="Line 2" id="line_2" onChange={onChange} />
       </FormControl>
       <FormControl>
-        <div className="FormField">
-          <InputLabel htmlFor="city">City</InputLabel>
-          <Input id="city" type="text" onChange={onChange} />
-        </div>
+        <FormField label="City" id="city" onChange={onChange} />
       </FormControl>
       <FormControl>
-        <div className="FormField">
-          <InputLabel htmlFor="region">Region</InputLabel>
-          <Input id="region" type="text" onChange={onChange} />
-        </div>
+        <FormField label="Region" id="region" onChange={onChange} />
       </FormControl>
       <FormControl>
-        <div className="FormField">
-          <InputLabel htmlFor="postal">Postal</InputLabel>
-          <Input id="postal" type="text" onChange={onChange} />
-        </div>
+        <FormField label="Postal" id="postal" onChange={onChange} />
       </FormControl>
     </div>
   );
