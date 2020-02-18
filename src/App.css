@@ -22,6 +22,21 @@ li {
   flex-direction: column;
 }
 
+.quote-section {
+  margin-top: 3%;
+}
+
+.option-row {
+  margin-bottom: 2%;
+}
+
+.select-option {
+  margin-top: 1%;
+}
+.QuoteScreen {
+  display: flex;
+  justify-content: space-around;
+}
 .name-row {
   display: flex;
   justify-content: center;
