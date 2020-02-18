@@ -4,7 +4,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
 function QuoteScreen({ quote }) {
-  // TODO make sure thsi is a form
+  // TODO make sure thsi is a form, rename this component
   const [deductibleValue, setDeductibleValue] = useState("");
   const [collisionValue, setCollisionValue] = useState("");
   const handleChange = (event, title) => {
