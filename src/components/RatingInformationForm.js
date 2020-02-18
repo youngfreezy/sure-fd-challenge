@@ -1,49 +1,34 @@
-import React, { useReducer } from "react";
-
+import React from "react";
 import { FormControl, Button } from "@material-ui/core";
 import AddressForm from "./AddressForm";
 import FormField from "./FormField";
-
-function RatingInformationForm() {
+import { useHistory } from "react-router-dom";
+function RatingInformationForm({ onChange, addressState, handleSubmit }) {
   //TODO: validation on inputs + Styling.
-  function reducer(state, { field, value }) {
-    return { ...state, [field]: value };
-  }
-  const [state, dispatch] = useReducer(reducer, {});
-  const onChange = e => {
-    dispatch({ field: e.target.id, value: e.target.value });
-  };
-
-  const handleSubmit = e => {
-    let { first_name, last_name, ...address } = state;
-    const request = { address, first_name, last_name };
-    fetch("https://fed-challenge-api.sure.now.sh/api/v1/quotes", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(request)
-    })
-      .then(response => response.json())
-      .then(res => {
-        console.log(res, "the post response");
-      })
-      .catch(err => {
-        console.log(err, "the error");
-      });
-  };
-
+  //DEPLOY
+  const history = useHistory();
   return (
     <div className="RatingInformationForm">
-      <FormControl>
-        <FormField label="First Name" id="first_name" onChange={onChange} />
-      </FormControl>
-      <FormControl>
-        <FormField label="Last Name" id="last_name" onChange={onChange} />
-      </FormControl>
-      <AddressForm onChange={onChange} addressState={state} />
-      <Button type="submit" color="primary" onClick={handleSubmit}>
+      <div className="name-row">
+        <FormControl>
+          <FormField label="First Name" id="first_name" onChange={onChange} />
+        </FormControl>
+        <FormControl>
+          <FormField label="Last Name" id="last_name" onChange={onChange} />
+        </FormControl>
+      </div>
+      <div className="address-row">
+        <AddressForm onChange={onChange} addressState={addressState} />
+      </div>
+      <Button
+        id="submit"
+        type="submit"
+        color="primary"
+        onClick={e => {
+          handleSubmit(e);
+          history.push("/quote");
+        }}
+      >
         Submit
       </Button>
     </div>
