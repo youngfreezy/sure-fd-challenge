@@ -1,0 +1,15 @@
+.quote-information {
+  display: flex;
+  justify-content: space-around;
+}
+
+.variable-option {
+  margin-top: 3%;
+}
+
+.option-row {
+  margin-bottom: 2%;
+}
+.select-option {
+  margin-top: 1%;
+}

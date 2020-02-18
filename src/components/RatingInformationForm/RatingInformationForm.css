@@ -1,0 +1,9 @@
+.name-row {
+  display: flex;
+  justify-content: center;
+}
+
+#submit {
+  background: lightblue;
+  margin-top: 20px;
+}

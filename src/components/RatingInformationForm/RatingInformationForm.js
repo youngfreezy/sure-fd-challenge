@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { FormControl, Button } from "@material-ui/core";
-import AddressForm from "./AddressForm";
-import FormField from "./FormField";
+import AddressForm from "../AddressForm/AddressForm";
+import FormField from "../FormField/FormField";
 import { useHistory } from "react-router-dom";
+import "./RatingInformationForm.css";
+
 function RatingInformationForm({ onChange, addressState, handleSubmit }) {
-  // Styling, clean up js and css.
   //deploy
   const history = useHistory();
   const [submitted, setSubmit] = useState(false);

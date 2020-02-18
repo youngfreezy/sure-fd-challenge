@@ -1,8 +1,8 @@
 import React, { useReducer, useState, useEffect } from "react";
 import "./App.css";
 import "typeface-roboto";
-import RatingInformationForm from "./components/RatingInformationForm";
-import QuoteScreen from "./components/QuoteScreen";
+import RatingInformationForm from "./components/RatingInformationForm/RatingInformationForm";
+import QuoteInfo from "./components/QuoteInfo/QuoteInfo";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -79,7 +79,7 @@ function App() {
             {loading ? (
               <CircularProgress variant="determinate" value={progress} />
             ) : null}
-            <QuoteScreen quote={quote} />
+            <QuoteInfo quote={quote} />
           </Route>
         </Switch>
       </div>

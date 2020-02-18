@@ -1,10 +1,11 @@
 import React from "react";
+import "./FormField.css";
 
 import { InputLabel, Input } from "@material-ui/core";
 
 function FormField({ label, id, onChange, error }) {
   return (
-    <div className="FormField">
+    <div className="form-field">
       <InputLabel error={error} htmlFor={id}>
         {label}
       </InputLabel>

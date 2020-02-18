@@ -1,11 +1,11 @@
 import React from "react";
-
+import "./AddressForm.css";
 import { FormControl } from "@material-ui/core";
-import FormField from "./FormField";
+import FormField from "../FormField/FormField";
 
 function AddressForm({ onChange, addressState, submitted }) {
   return (
-    <div className="AddressForm">
+    <div className="address-form">
       <FormControl>
         <FormField
           label="Address"
