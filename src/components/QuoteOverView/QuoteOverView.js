@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 // import mockQuote from "./mockQuote";
-import QuoteInformationHeader from "../QuoteInformationHeader/QuoteInformationHeader";
-import QuoteInformationVariableOptions from "../QuoteInformationVariableOptions/QuoteInformationVariableOptions";
+import QuoteOverViewHeader from "../QuoteOverViewHeader/QuoteOverViewHeader";
+import QuoteOverViewVariableOptions from "../QuoteOverViewVariableOptions/QuoteOverViewVariableOptions";
 import QuoteError from "../QuoteError/QuoteError";
-function QuoteInfo({ quote }) {
+function QuoteOverView({ quote }) {
   //for testing, uncomment to avoid submitting post request in previous screen
   // quote = mockQuote;
   // some fun things I could to extend functionaliity
@@ -29,9 +29,9 @@ function QuoteInfo({ quote }) {
       }}
     >
       {!quoteExists && quote.err && <QuoteError err={quote.err} />}
-      {quoteExists && <QuoteInformationHeader quote={quote} />}
+      {quoteExists && <QuoteOverViewHeader quote={quote} />}
       {quoteExists && (
-        <QuoteInformationVariableOptions
+        <QuoteOverViewVariableOptions
           quote={quote}
           makeChangesButtonClicked={makeChangesButtonClicked}
           handleClick={handleClick}
@@ -41,4 +41,4 @@ function QuoteInfo({ quote }) {
   );
 }
 
-export default QuoteInfo;
+export default QuoteOverView;

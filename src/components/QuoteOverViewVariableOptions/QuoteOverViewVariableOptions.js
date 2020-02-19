@@ -4,8 +4,8 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import get from "lodash/get";
 
-import "./QuoteInformationVariableOptions.css";
-function QuoteInformationVariableOptions({
+import "./QuoteOverViewVariableOptions.css";
+function QuoteOverViewVariableOptions({
   quote,
   makeChangesButtonClicked,
   handleClick
@@ -85,4 +85,4 @@ function QuoteInformationVariableOptions({
   );
 }
 
-export default QuoteInformationVariableOptions;
+export default QuoteOverViewVariableOptions;

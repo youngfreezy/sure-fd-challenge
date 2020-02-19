@@ -1,8 +1,8 @@
 import React from "react";
-import "./QuoteInformationHeader.css";
+import "./QuoteOverViewHeader.css";
 import get from "lodash/get";
 
-function QuoteInformationHeader({ quote }) {
+function QuoteOverViewHeader({ quote }) {
   return (
     <div>
       {get(quote, "premium") && (
@@ -36,4 +36,4 @@ function QuoteInformationHeader({ quote }) {
   );
 }
 
-export default QuoteInformationHeader;
+export default QuoteOverViewHeader;
