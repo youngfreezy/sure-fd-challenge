@@ -16,7 +16,7 @@ export const menuItems = [
 ];
 
 export function checkForSpecialCharacters(text) {
-  const regex = /[!@#$%^&*(),.?":{}|<>]/g;
+  const regex = /[!@#$%^&*(),.?":;{}|<>]/g;
   const found = text.match(regex);
   return found && found.length > 0;
 }
