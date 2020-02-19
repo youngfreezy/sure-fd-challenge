@@ -3,7 +3,7 @@ import "./App.css";
 import "typeface-roboto";
 import RatingInformationForm from "./components/RatingInformationForm/RatingInformationForm";
 import QuoteOverView from "./components/QuoteOverView/QuoteOverView";
-import { HashRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 function App() {
@@ -45,16 +45,16 @@ function App() {
     })
       .then(response => response.json())
       .then(res => {
-        setLoading(false);
         if (!res.quote) {
           throw res;
         } else {
           setQuote(res.quote);
+          setLoading(false);
         }
         
       })
       .catch(err => {
-        setQuote({ err });
+        setQuote({err});
         setLoading(false);
       });
   };

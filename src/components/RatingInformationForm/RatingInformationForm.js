@@ -17,7 +17,7 @@ function RatingInformationForm({ onChange, addressState, handleSubmit }) {
         setSubmit(true);
         if (hasAllRequiredProperties(addressState)) {
           handleSubmit(e);
-          history.push("/quote");
+          history.push("/quote-overview");
         }
       }}
     >

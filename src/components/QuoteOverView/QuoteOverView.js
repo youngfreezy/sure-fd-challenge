@@ -18,7 +18,6 @@ function QuoteOverView({ quote }) {
     setmakeChangesButtonClicked(!makeChangesButtonClicked);
   };
   const quoteExists = quote.quoteId && !quote.err;
-  
   //I'm aware that this iteration with two maps is o^n squared
   //but since it's only two options I went with this approach
   return (
