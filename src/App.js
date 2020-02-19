@@ -3,7 +3,7 @@ import "./App.css";
 import "typeface-roboto";
 import RatingInformationForm from "./components/RatingInformationForm/RatingInformationForm";
 import QuoteOverView from "./components/QuoteOverView/QuoteOverView";
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 function App() {
@@ -64,23 +64,23 @@ function App() {
       <div className="App">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/rating-information">Rating Information</Link>
           </li>
           <li>
-            <Link to="/quote">Quote</Link>
+            <Link to="/quote-overview">Quote OverView</Link>
           </li>
         </ul>
 
         <hr />
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/rating-information">
             <RatingInformationForm
               onChange={onChange}
               addressState={addressState}
               handleSubmit={handleSubmit}
             />
           </Route>
-          <Route path="/quote">
+          <Route path="/quote-overview">
             {loading ? (
               <CircularProgress variant="determinate" value={progress} />
             ) : null}
@@ -88,6 +88,7 @@ function App() {
           </Route>
         </Switch>
       </div>
+      <Redirect exact from="/" to="rating-information" />
     </Router>
   );
 }

@@ -21,6 +21,7 @@ function RatingInformationForm({ onChange, addressState, handleSubmit }) {
         }
       }}
     >
+      <h5>Rating Information</h5>
       <div className="rating-form">
         <FormControl>
           <InputField
