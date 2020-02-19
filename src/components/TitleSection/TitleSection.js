@@ -1,5 +1,5 @@
 import React from "react";
-import "./TitleSection.css"
+import "./TitleSection.css";
 
 function TitleSection({ text, emoji }) {
   return (
@@ -8,7 +8,7 @@ function TitleSection({ text, emoji }) {
         <h5>{text}</h5>
       </div>
       <div className="emoji-container">
-        {emoji.map( (emojiConfig, i) => {
+        {emoji.map((emojiConfig, i) => {
           return (
             <span key={i} role="img" aria-label={emojiConfig.name}>
               {emojiConfig.val}

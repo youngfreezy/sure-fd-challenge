@@ -3,12 +3,7 @@ import "./AddressForm.css";
 import { FormControl } from "@material-ui/core";
 import InputField from "../InputField/InputField";
 
-function AddressForm({
-  onChange,
-  formState,
-  displayErrorMessages,
-  serverSideError
-}) {
+function AddressForm({ onChange, formState, displayErrorMessages, serverSideError }) {
   return (
     <div className="address-form">
       <FormControl>

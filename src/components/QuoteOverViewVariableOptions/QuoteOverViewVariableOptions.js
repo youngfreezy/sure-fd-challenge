@@ -4,11 +4,7 @@ import get from "lodash/get";
 import PremiumInformation from "../PremiumInformation/PremiumInformation";
 
 import "./QuoteOverViewVariableOptions.css";
-function QuoteOverViewVariableOptions({
-  quote,
-  makeChangesButtonClicked,
-  handleClick
-}) {
+function QuoteOverViewVariableOptions({ quote, makeChangesButtonClicked, handleClick }) {
   const [deductibleValue, setDeductibleValue] = useState("");
   const [collisionValue, setCollisionValue] = useState("");
   const [userSelectedValue, setUserSelectedValue] = useState(false);
@@ -25,11 +21,7 @@ function QuoteOverViewVariableOptions({
   return (
     <div>
       {!makeChangesButtonClicked && (
-        <Button
-          className="variable-selection-button"
-          color="primary"
-          onClick={handleClick}
-        >
+        <Button className="variable-selection-button" color="primary" onClick={handleClick}>
           Make Changes
         </Button>
       )}
