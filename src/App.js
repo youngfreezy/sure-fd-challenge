@@ -18,7 +18,7 @@ function App() {
   const [submitted, setSubmitted] = useState(false);
 
   function formReducer(formState, { field, value }) {
-    const validationErrors = checkForErrors(field, value)
+    const validationErrors = checkForErrors(field, value);
     return { ...formState, [field]: value, validationErrors };
   }
 
@@ -35,11 +35,12 @@ function App() {
     }, 100);
   }, []);
 
-  const handleSubmit = e => {
-    const config = { formState, setLoading, setQuote, dispatch };
+  const handleSubmit = (e, history) => {
+    const config = { formState, setLoading, setQuote, dispatch, setSubmitted };
     setSubmitted(true);
-    return ApiUtil.handleRatingInformationSubmit(e, config);
+    return ApiUtil.handleRatingInformationSubmit(e, config, history);
   };
+
   return (
     <Router>
       <div className="App">
@@ -51,6 +52,7 @@ function App() {
               formState={formState}
               handleSubmit={handleSubmit}
               loading={loading}
+              serverSideError={quote}
             />
           </Route>
           <Route path="/quote-overview">

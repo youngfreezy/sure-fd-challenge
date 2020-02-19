@@ -15,7 +15,7 @@ import {
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import TitleSection from "../TitleSection/TitleSection";
 
-function RatingInformationForm({ onChange, formState, handleSubmit, loading }) {
+function RatingInformationForm({ onChange, formState, handleSubmit, loading, serverSideError }) {
   const history = useHistory();
   const [disabled, setDisabled] = useState(false);
 
@@ -33,8 +33,7 @@ function RatingInformationForm({ onChange, formState, handleSubmit, loading }) {
       <form
         onSubmit={e => {
           e.preventDefault();
-          handleSubmit(e);
-          history.push("/quote-overview");
+          handleSubmit(e, history);
         }}
       >
         <TitleSection
@@ -67,6 +66,7 @@ function RatingInformationForm({ onChange, formState, handleSubmit, loading }) {
             onChange={onChange}
             formState={formState}
             displayErrorMessages={displayErrorMessages}
+            serverSideError={serverSideError.err}
           />
           <FormHelperText id="helper-text">
             We'll never share your personal information.

@@ -31,7 +31,11 @@ export function checkForErrors(field, value) {
   return errors;
 }
 
-export function displayErrorMessages(field, formState) {
+export function displayErrorMessages(field, formState, serverSideError) {
+  const isBlank = get(formState, `validationErrors.blank[${field}]`);
+  if (serverSideError) {
+    return displayServerSideError(serverSideError, field);
+  }
   if (get(formState, `validationErrors.specialCharacters[${field}]`)) {
     return (
       <div class="error-msg">
@@ -40,15 +44,34 @@ export function displayErrorMessages(field, formState) {
       </div>
     );
   }
-  if (get(formState, `validationErrors.blank[${field}]`) && requiredKeys.includes(field)) {
+  if (isBlank && requiredKeys.includes(field)) {
     return (
-      <div class="error-msg">
+      <div className="error-msg">
         {" "}
         <small>Please Enter A Value</small>
       </div>
     );
   }
   return null;
+}
+
+function displayServerSideError({ errors }, field) {
+  //since we're only dealing with one server side error, hardcoding this path for now.
+  const msg = errors.address[field];
+  if (msg) {
+    return (
+      <div className="error-msg">
+        {" "}
+        <small>{msg}</small>
+      </div>
+    );
+  }
+}
+
+function clearServerSideErrorsFromForm(setQuote) {
+  return setTimeout(() => {
+    setQuote({});
+  }, 2000);
 }
 
 export const allKeys = requiredKeys.concat(["line_2"]);
@@ -72,12 +95,11 @@ export function clearFormValues(dispatch) {
 }
 //in the real world this would be in a separate file. leaving it here for now.
 export const ApiUtil = {
-  handleRatingInformationSubmit: (e, config) => {
-    const { formState, setLoading, setQuote, dispatch } = config;
+  handleRatingInformationSubmit: (e, config, history) => {
+    const { formState, setLoading, setQuote, dispatch, setSubmitted } = config;
     let { first_name, last_name, ...address } = formState;
     const request = { address, first_name, last_name };
     setLoading(true);
-    clearFormValues(dispatch);
     fetch("https://fed-challenge-api.sure.now.sh/api/v1/quotes", {
       method: "POST",
       headers: {
@@ -91,13 +113,17 @@ export const ApiUtil = {
         if (!res.quote) {
           throw res;
         } else {
+          clearFormValues(dispatch);
           setQuote(res.quote);
           setLoading(false);
+          history.push("/quote-overview");
         }
       })
       .catch(err => {
         setQuote({ err });
         setLoading(false);
+        setSubmitted(false);
+        clearServerSideErrorsFromForm(setQuote);
       });
   }
 };
