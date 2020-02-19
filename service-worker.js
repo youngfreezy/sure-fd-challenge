@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/sure-fd-challenge/precache-manifest.d43add9e9677737b9d7cf3b8ecd7db9a.js"
+  "/sure-fd-challenge/precache-manifest.53d9c1345593d58f363d94fd82cb980b.js"
 );
 
 self.addEventListener('message', (event) => {
