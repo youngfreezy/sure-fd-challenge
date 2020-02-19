@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Button, Select, MenuItem } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import get from "lodash/get";
 import PremiumInformation from "../PremiumInformation/PremiumInformation";
-
+import SelectVariableOption from "../SelectVariableOption/SelectVariableOption"
 import "./QuoteOverViewVariableOptions.css";
 function QuoteOverViewVariableOptions({
   quote,
@@ -55,26 +55,7 @@ function QuoteOverViewVariableOptions({
                   <div className="select-text">
                     <i>Select a new option below: </i>
                   </div>
-                  {/* TODO: put this into its own component */}
-                  <Select
-                    className={`select-option`}
-                    value={
-                      option.title === "Deductible"
-                        ? deductibleValue || option.values[0]
-                        : collisionValue || option.values[0]
-                    }
-                    onChange={e => {
-                      handleChange(e, option.title);
-                    }}
-                  >
-                    {option.values.map((item, i) => {
-                      return (
-                        <MenuItem value={item} key={i}>
-                          {item}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
+                  <SelectVariableOption deductibleValue={deductibleValue} collisionValue={collisionValue} handleChange={handleChange} option={option}/>
                 </div>
               );
             }
