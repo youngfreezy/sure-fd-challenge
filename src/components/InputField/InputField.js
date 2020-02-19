@@ -1,11 +1,11 @@
 import React from "react";
-import "./FormField.css";
+import "./InputField.css";
 
 import { InputLabel, Input } from "@material-ui/core";
 
-function FormField({ label, id, onChange, error }) {
+function InputField({ label, id, onChange, error }) {
   return (
-    <div className="form-field">
+    <div className="input-field">
       <InputLabel error={error} htmlFor={id}>
         {label}
       </InputLabel>
@@ -14,4 +14,4 @@ function FormField({ label, id, onChange, error }) {
   );
 }
 
-export default FormField;
+export default InputField;

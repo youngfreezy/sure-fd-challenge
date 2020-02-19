@@ -1,13 +1,13 @@
 import React from "react";
 import "./AddressForm.css";
 import { FormControl } from "@material-ui/core";
-import FormField from "../FormField/FormField";
+import InputField from "../InputField/InputField";
 
 function AddressForm({ onChange, addressState, submitted }) {
   return (
     <div className="address-form">
       <FormControl>
-        <FormField
+        <InputField
           label="Address"
           id="line_1"
           onChange={onChange}
@@ -16,10 +16,10 @@ function AddressForm({ onChange, addressState, submitted }) {
       </FormControl>
 
       <FormControl>
-        <FormField label="Line 2" id="line_2" onChange={onChange} />
+        <InputField label="Line 2" id="line_2" onChange={onChange} />
       </FormControl>
       <FormControl>
-        <FormField
+        <InputField
           label="City"
           id="city"
           onChange={onChange}
@@ -27,7 +27,7 @@ function AddressForm({ onChange, addressState, submitted }) {
         />
       </FormControl>
       <FormControl>
-        <FormField
+        <InputField
           label="Region"
           id="region"
           onChange={onChange}
@@ -35,7 +35,7 @@ function AddressForm({ onChange, addressState, submitted }) {
         />
       </FormControl>
       <FormControl>
-        <FormField
+        <InputField
           label="Postal"
           id="postal"
           onChange={onChange}

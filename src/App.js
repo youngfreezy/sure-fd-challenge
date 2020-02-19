@@ -45,8 +45,13 @@ function App() {
     })
       .then(response => response.json())
       .then(res => {
-        setQuote(res.quote);
         setLoading(false);
+        if (!res.quote) {
+          throw res;
+        } else {
+          setQuote(res.quote);
+        }
+        
       })
       .catch(err => {
         setQuote({ err });

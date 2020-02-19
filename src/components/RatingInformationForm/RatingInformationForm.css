@@ -1,9 +1,10 @@
-.name-row {
+.rating-form {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
-#submit {
-  background: lightblue;
-  margin-top: 20px;
+#helper-text {
+  display: flex;
+  justify-content: center;
+  margin-top: 1%;
 }
