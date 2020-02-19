@@ -1,4 +1,5 @@
 import React from "react";
+import get from "lodash/get";
 
 export const requiredKeys = [
   "first_name",
@@ -19,44 +20,53 @@ export function checkForSpecialCharacters(text) {
   const found = text.match(regex);
   return found && found.length > 0;
 }
-function checkForBlankFields(text) {
-  return !text;
-}
-let errors = {
-  specialCharacters: { msg: "Special Characters Are Not Allowed" },
-  blank: { msg: "Please Enter A Value" },
-  name: {},
-  address: {}
-};
+
 export function checkForErrors(field, value) {
-  errors.specialCharacters[field] = checkForSpecialCharacters(value);
-  if (errors.specialCharacters[field] === false)
-    delete errors.specialCharacters[field];
-  if (requiredKeys.includes(field)) {
-    errors.blank[field] = checkForBlankFields(value);
+  let errors = { specialCharacters: {}, blank: {} };
+  if (checkForSpecialCharacters(value)) {
+    errors.specialCharacters[field] = true;
   }
-  if (errors.blank[field] === false) delete errors.blank[field];
+  if (value === "") {
+    errors.blank[field] = true;
+  }
   return errors;
 }
 
 export function displayErrorMessages(field, formState, serverSideError) {
-  errors = Object.assign(
-    {},
-    errors,
-    formState.validationErrors,
-    serverSideError && serverSideError.errors
-  );
-  return Object.keys(errors).map((error, i) => {
-    if (errors[error][field]) {
-      return (
-        <div key={i} className="error-msg">
-          {" "}
-          <small>{errors[error].msg || errors[error][field]}</small>
-        </div>
-      );
-    }
-    return null;
-  });
+  const isBlank = get(formState, `validationErrors.blank[${field}]`);
+  if (serverSideError) {
+    return displayServerSideError(serverSideError, field);
+  }
+  if (get(formState, `validationErrors.specialCharacters[${field}]`)) {
+    return (
+      <div class="error-msg">
+        {" "}
+        <small>Special Characters Are Not Allowed</small>
+      </div>
+    );
+  }
+  if (isBlank && requiredKeys.includes(field)) {
+    return (
+      <div className="error-msg">
+        {" "}
+        <small>Please Enter A Value</small>
+      </div>
+    );
+  }
+  return null;
+}
+
+function displayServerSideError({ errors }, field) {
+  //since we're only dealing with one server side error, hardcoding this path for now.
+  const msg = errors.address[field];
+  if (msg) {
+    return (
+      <div className="error-msg">
+        {" "}
+        <small>{msg}</small>
+      </div>
+    );
+  }
 }
 
 function clearServerSideErrorsFromForm(setQuote) {
