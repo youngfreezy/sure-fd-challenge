@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { FormControl, Button } from "@material-ui/core";
-import FormHelperText from "@material-ui/core/FormHelperText";
+import {
+  FormControl,
+  Button,
+  FormHelperText,
+  TextField
+} from "@material-ui/core";
 import AddressForm from "../AddressForm/AddressForm";
-import InputField from "../InputField/InputField";
 import { useHistory } from "react-router-dom";
 import "./RatingInformationForm.css";
-import { hasAllRequiredProperties } from "../../utils/utils";
+import {
+  hasAllRequiredProperties,
+  displayErrorMessages
+} from "../../utils/utils";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import TitleSection from "../TitleSection/TitleSection";
 
 function RatingInformationForm({ onChange, formState, handleSubmit, loading }) {
   const history = useHistory();
-  const [submitted, setSubmit] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
@@ -20,7 +26,6 @@ function RatingInformationForm({ onChange, formState, handleSubmit, loading }) {
       setDisabled(true);
     }
   }, [formState]);
-  
   return (
     <div>
       {loading && <LoadingSpinner />}
@@ -28,33 +33,40 @@ function RatingInformationForm({ onChange, formState, handleSubmit, loading }) {
       <form
         onSubmit={e => {
           e.preventDefault();
-          setSubmit(true);
           handleSubmit(e);
           history.push("/quote-overview");
         }}
       >
-        <h5>Rating Information</h5>
+        <TitleSection
+          text={
+            "Enter the Information Below to Receive a Quote for Your Rocket!"
+          }
+          emoji={[{ val: "🚀", name: "rocket" }]}
+        />
+
         <div className="rating-form">
           <FormControl>
-            <InputField
+            <TextField
               label="First Name"
               id="first_name"
               onChange={onChange}
-              error={submitted && !formState["first_name"]}
+              required
             />
+            {displayErrorMessages("first_name", formState)}
           </FormControl>
           <FormControl>
-            <InputField
+            <TextField
               label="Last Name"
               id="last_name"
               onChange={onChange}
-              error={submitted && !formState["last_name"]}
+              required
             />
+            {displayErrorMessages("last_name", formState)}
           </FormControl>
           <AddressForm
             onChange={onChange}
             formState={formState}
-            submitted={submitted}
+            displayErrorMessages={displayErrorMessages}
           />
           <FormHelperText id="helper-text">
             We'll never share your personal information.

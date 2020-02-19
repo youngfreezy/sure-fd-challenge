@@ -7,18 +7,19 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
-
+import { checkForErrors } from "./utils/utils";
 import { ApiUtil } from "./utils/utils";
+import NavigationMenu from "./components/Menu/NavigationMenu";
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   function formReducer(formState, { field, value }) {
-    return { ...formState, [field]: value };
+    const validationErrors = checkForErrors(field, value)
+    return { ...formState, [field]: value, validationErrors };
   }
 
   const [formState, dispatch] = useReducer(formReducer, {});
@@ -36,23 +37,13 @@ function App() {
 
   const handleSubmit = e => {
     const config = { formState, setLoading, setQuote, dispatch };
-    setHasSubmitted(true)
+    setSubmitted(true);
     return ApiUtil.handleRatingInformationSubmit(e, config);
   };
   return (
     <Router>
       <div className="App">
-        <ul>
-          <li>
-            <Link to="/rating-information">Rating Information</Link>
-          </li>
-          { hasSubmitted &&
-          <li>
-            <Link to="/quote-overview">Quote OverView</Link>
-          </li>}
-        </ul>
-
-        <hr />
+        <NavigationMenu submitted={submitted} />
         <Switch>
           <Route exact path="/rating-information">
             <RatingInformationForm

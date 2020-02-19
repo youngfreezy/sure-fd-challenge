@@ -4,6 +4,7 @@ import QuoteOverViewHeader from "../QuoteOverViewHeader/QuoteOverViewHeader";
 import QuoteOverViewVariableOptions from "../QuoteOverViewVariableOptions/QuoteOverViewVariableOptions";
 import QuoteError from "../QuoteError/QuoteError";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import TitleSection from "../TitleSection/TitleSection";
 function QuoteOverView({ quote, loading }) {
   //for testing, uncomment to avoid submitting post request in previous screen
   // quote = mockQuote;
@@ -24,7 +25,15 @@ function QuoteOverView({ quote, loading }) {
           //TBD
         }}
       >
-        <h5>Quote Overview</h5>
+        <TitleSection
+          text={"Quote Overview"}
+          emoji={[
+            { val: "🚀", name: "rocket" },
+            { val: "🚀", name: "rocket" },
+            { val: "💸", name: "money" }
+          ]}
+        />
+
         {!quoteExists && quote.err && <QuoteError err={quote.err} />}
         {quoteExists && <QuoteOverViewHeader quote={quote} />}
         {quoteExists && (
