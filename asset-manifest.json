@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/sure-fd-challenge/static/css/main.e6e4240b.chunk.css",
+    "main.js": "/sure-fd-challenge/static/js/main.f2ed94cb.chunk.js",
+    "main.js.map": "/sure-fd-challenge/static/js/main.f2ed94cb.chunk.js.map",
+    "runtime-main.js": "/sure-fd-challenge/static/js/runtime-main.aafefe4b.js",
+    "runtime-main.js.map": "/sure-fd-challenge/static/js/runtime-main.aafefe4b.js.map",
+    "static/css/2.af065baa.chunk.css": "/sure-fd-challenge/static/css/2.af065baa.chunk.css",
+    "static/js/2.1e6b411a.chunk.js": "/sure-fd-challenge/static/js/2.1e6b411a.chunk.js",
+    "static/js/2.1e6b411a.chunk.js.map": "/sure-fd-challenge/static/js/2.1e6b411a.chunk.js.map",
+    "index.html": "/sure-fd-challenge/index.html",
+    "precache-manifest.d43add9e9677737b9d7cf3b8ecd7db9a.js": "/sure-fd-challenge/precache-manifest.d43add9e9677737b9d7cf3b8ecd7db9a.js",
+    "service-worker.js": "/sure-fd-challenge/service-worker.js",
+    "static/css/2.af065baa.chunk.css.map": "/sure-fd-challenge/static/css/2.af065baa.chunk.css.map",
+    "static/css/main.e6e4240b.chunk.css.map": "/sure-fd-challenge/static/css/main.e6e4240b.chunk.css.map",
+    "static/js/2.1e6b411a.chunk.js.LICENSE.txt": "/sure-fd-challenge/static/js/2.1e6b411a.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/sure-fd-challenge/static/media/roboto-latin-900italic.ebf6d164.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aafefe4b.js",
+    "static/css/2.af065baa.chunk.css",
+    "static/js/2.1e6b411a.chunk.js",
+    "static/css/main.e6e4240b.chunk.css",
+    "static/js/main.f2ed94cb.chunk.js"
+  ]
+}
