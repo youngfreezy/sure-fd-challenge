@@ -3,62 +3,42 @@ import "./App.css";
 import "typeface-roboto";
 import RatingInformationForm from "./components/RatingInformationForm/RatingInformationForm";
 import QuoteOverView from "./components/QuoteOverView/QuoteOverView";
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+
+import { ApiUtil } from "./utils/utils";
 
 function App() {
-  const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
-  useEffect(() => {
-    function tick() {
-      // reset when reaching 100%
-      setProgress(oldProgress => (oldProgress >= 100 ? 0 : oldProgress + 1));
-    }
-
-    const timer = setInterval(tick, 20);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-  function addressReducer(addressState, { field, value }) {
-    return { ...addressState, [field]: value };
+  function formReducer(formState, { field, value }) {
+    return { ...formState, [field]: value };
   }
 
-  const [addressState, dispatch] = useReducer(addressReducer, {});
+  const [formState, dispatch] = useReducer(formReducer, {});
   const [quote, setQuote] = useState({});
   const onChange = e => {
     dispatch({ field: e.target.id, value: e.target.value });
   };
 
-  const handleSubmit = e => {
-    let { first_name, last_name, ...address } = addressState;
-    const request = { address, first_name, last_name };
+  useEffect(() => {
     setLoading(true);
-    fetch("https://fed-challenge-api.sure.now.sh/api/v1/quotes", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(request)
-    })
-      .then(response => response.json())
-      .then(res => {
-        if (!res.quote) {
-          throw res;
-        } else {
-          setQuote(res.quote);
-          setLoading(false);
-        }
-        
-      })
-      .catch(err => {
-        setQuote({err});
-        setLoading(false);
-      });
-  };
+    setTimeout(() => {
+      setLoading(false);
+    }, 100);
+  }, []);
 
+  const handleSubmit = e => {
+    const config = { formState, setLoading, setQuote, dispatch };
+    setHasSubmitted(true)
+    return ApiUtil.handleRatingInformationSubmit(e, config);
+  };
   return (
     <Router>
       <div className="App">
@@ -66,9 +46,10 @@ function App() {
           <li>
             <Link to="/rating-information">Rating Information</Link>
           </li>
+          { hasSubmitted &&
           <li>
             <Link to="/quote-overview">Quote OverView</Link>
-          </li>
+          </li>}
         </ul>
 
         <hr />
@@ -76,15 +57,13 @@ function App() {
           <Route exact path="/rating-information">
             <RatingInformationForm
               onChange={onChange}
-              addressState={addressState}
+              formState={formState}
               handleSubmit={handleSubmit}
+              loading={loading}
             />
           </Route>
           <Route path="/quote-overview">
-            {loading ? (
-              <CircularProgress variant="determinate" value={progress} />
-            ) : null}
-            <QuoteOverView quote={quote} />
+            <QuoteOverView quote={quote} loading={loading} />
           </Route>
         </Switch>
       </div>

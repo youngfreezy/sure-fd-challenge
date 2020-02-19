@@ -34,8 +34,7 @@ function QuoteOverViewVariableOptions({
 
       <div className="variable-options">
         {makeChangesButtonClicked &&
-          Object.keys(get(quote, "variable_options"))
-            .map(key => quote.variable_options[key])
+          Object.values(get(quote, "variable_options", {}))
             .map((option, i) => {
               if (option) {
                 return (
@@ -47,7 +46,7 @@ function QuoteOverViewVariableOptions({
                     <div className="select-text">
                       <i>Select a new option below: </i>
                     </div>
-
+                    {/* TODO: put this into its own component */}
                     <Select
                       className={`select-option`}
                       value={

@@ -3,7 +3,7 @@ import "./AddressForm.css";
 import { FormControl } from "@material-ui/core";
 import InputField from "../InputField/InputField";
 
-function AddressForm({ onChange, addressState, submitted }) {
+function AddressForm({ onChange, formState, submitted }) {
   return (
     <div className="address-form">
       <FormControl>
@@ -11,7 +11,7 @@ function AddressForm({ onChange, addressState, submitted }) {
           label="Address"
           id="line_1"
           onChange={onChange}
-          error={submitted && !addressState["line_1"]}
+          error={submitted && !formState["line_1"]}
         />
       </FormControl>
 
@@ -23,7 +23,7 @@ function AddressForm({ onChange, addressState, submitted }) {
           label="City"
           id="city"
           onChange={onChange}
-          error={submitted && !addressState["city"]}
+          error={submitted && !formState["city"]}
         />
       </FormControl>
       <FormControl>
@@ -31,7 +31,7 @@ function AddressForm({ onChange, addressState, submitted }) {
           label="Region"
           id="region"
           onChange={onChange}
-          error={submitted && !addressState["region"]}
+          error={submitted && !formState["region"]}
         />
       </FormControl>
       <FormControl>
@@ -39,7 +39,7 @@ function AddressForm({ onChange, addressState, submitted }) {
           label="Postal"
           id="postal"
           onChange={onChange}
-          error={submitted && !addressState["postal"]}
+          error={submitted && !formState["postal"]}
         />
       </FormControl>
     </div>
