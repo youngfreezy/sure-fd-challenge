@@ -8,7 +8,9 @@ import TitleSection from "../TitleSection/TitleSection";
 function QuoteOverView({ quote, loading }) {
   //for testing, uncomment to avoid submitting post request in previous screen
   // quote = mockQuote;
-  const [makeChangesButtonClicked, setmakeChangesButtonClicked] = useState(false);
+  const [makeChangesButtonClicked, setmakeChangesButtonClicked] = useState(
+    false
+  );
 
   const handleClick = () => {
     setmakeChangesButtonClicked(!makeChangesButtonClicked);

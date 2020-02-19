@@ -3,7 +3,12 @@ import "./App.css";
 import "typeface-roboto";
 import RatingInformationForm from "./components/RatingInformationForm/RatingInformationForm";
 import QuoteOverView from "./components/QuoteOverView/QuoteOverView";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import { checkForErrors } from "./utils/utils";
 import { ApiUtil } from "./utils/utils";
 import NavigationMenu from "./components/Menu/NavigationMenu";

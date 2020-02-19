@@ -18,7 +18,11 @@ export default function NavigationMenu({ submitted }) {
 
   return (
     <div className="navigation-menu">
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+      <Button
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
         Open Menu
       </Button>
       <Menu

@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { FormControl, Button, FormHelperText, TextField } from "@material-ui/core";
+import {
+  FormControl,
+  Button,
+  FormHelperText,
+  TextField
+} from "@material-ui/core";
 import AddressForm from "../AddressForm/AddressForm";
 import { useHistory } from "react-router-dom";
 import "./RatingInformationForm.css";
-import { hasAllRequiredProperties, displayErrorMessages } from "../../utils/utils";
+import {
+  hasAllRequiredProperties,
+  displayErrorMessages
+} from "../../utils/utils";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import TitleSection from "../TitleSection/TitleSection";
 
-function RatingInformationForm({ onChange, formState, handleSubmit, loading, serverSideError }) {
+function RatingInformationForm({
+  onChange,
+  formState,
+  handleSubmit,
+  loading,
+  serverSideError
+}) {
   const history = useHistory();
   const [disabled, setDisabled] = useState(false);
 
@@ -29,17 +43,29 @@ function RatingInformationForm({ onChange, formState, handleSubmit, loading, ser
         }}
       >
         <TitleSection
-          text={"Enter the Information Below to Receive a Quote for Your Rocket!"}
+          text={
+            "Enter the Information Below to Receive a Quote for Your Rocket!"
+          }
           emoji={[{ val: "🚀", name: "rocket" }]}
         />
 
         <div className="rating-form">
           <FormControl>
-            <TextField label="First Name" id="first_name" onChange={onChange} required />
+            <TextField
+              label="First Name"
+              id="first_name"
+              onChange={onChange}
+              required
+            />
             {displayErrorMessages("first_name", formState)}
           </FormControl>
           <FormControl>
-            <TextField label="Last Name" id="last_name" onChange={onChange} required />
+            <TextField
+              label="Last Name"
+              id="last_name"
+              onChange={onChange}
+              required
+            />
             {displayErrorMessages("last_name", formState)}
           </FormControl>
           <AddressForm

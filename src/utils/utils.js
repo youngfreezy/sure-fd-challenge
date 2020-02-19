@@ -1,7 +1,14 @@
 import React from "react";
 import get from "lodash/get";
 
-export const requiredKeys = ["first_name", "last_name", "line_1", "city", "region", "postal"];
+export const requiredKeys = [
+  "first_name",
+  "last_name",
+  "line_1",
+  "city",
+  "region",
+  "postal"
+];
 
 export const menuItems = [
   { link: "/rating-information", text: "Rating Information" },

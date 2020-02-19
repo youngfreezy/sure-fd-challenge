@@ -10,7 +10,8 @@ function QuoteOverViewHeader({ quote }) {
           Hi <strong>{quote.policy_holder.first_name}!</strong>
           <i>
             <h5>
-              Your current premium is: <span className="value">{quote.premium}</span>
+              Your current premium is:{" "}
+              <span className="value">{quote.premium}</span>
             </h5>
           </i>
         </div>
@@ -22,7 +23,10 @@ function QuoteOverViewHeader({ quote }) {
             <i key={i}>
               <h5>
                 <div>
-                  Your {key} is: <span className="value">{quote.variable_selections[key]}</span>
+                  Your {key} is:{" "}
+                  <span className="value">
+                    {quote.variable_selections[key]}
+                  </span>
                 </div>
               </h5>
             </i>

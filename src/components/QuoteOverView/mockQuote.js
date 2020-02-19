@@ -17,7 +17,8 @@ export default {
     },
     asteroid_collision: {
       title: "Asteroid Collision Limit",
-      description: "The maximum amount covered for damages caused by asteroid collisions.",
+      description:
+        "The maximum amount covered for damages caused by asteroid collisions.",
       values: [100000, 300000, 500000, 1000000]
     }
   },
