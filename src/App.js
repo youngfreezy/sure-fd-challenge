@@ -3,7 +3,7 @@ import "./App.css";
 import "typeface-roboto";
 import RatingInformationForm from "./components/RatingInformationForm/RatingInformationForm";
 import QuoteOverView from "./components/QuoteOverView/QuoteOverView";
-import { HashRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 function App() {
